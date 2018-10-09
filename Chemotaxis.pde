@@ -3,10 +3,11 @@
  void setup()   
  {   
    size(600,600);
-   bact = new Bacteria[30];
+   background(0);
+   bact = new Bacteria[10];
    for(int i=0; i < bact.length; i++)
    {
-     bact[i] = new Bacteria();
+     bact[i] = new Bacteria(300,300);
    }
  	//initialize bacteria variables here   
  }   
@@ -15,31 +16,41 @@
    for (int i = 0; i < bact.length; i++)
    {
    bact[i].show();
-   bact[i].hyper();
+   bact[i].move();
  	 }
  //move and show the bacteria   
  }  
  class Bacteria    
  {
-   int bColor;
-   int bX, bY;
+   int b1Color, b2Color;
+   int bX1, bY1, bX2, bY2;
    
-   Bacteria()
+   Bacteria(int x, int y)
    {
-     bColor = color(205,105,205,15);
-     bX = 300;
-     bY = 300;
+     b1Color = color(205,105,205,15);
+     b2Color = color(150,250,150,15);
+     bX1 = x;
+     bY1 = y;
+     bX2 = x - 10;
+     bY2 = y + 10;
+     
    }
-   void hyper()
+   void move()
    {
-     bX = bX + (int)(Math.random()*9)-4; 
-     bY = bY + (int)(Math.random()*9)-4;
-   }
+     
+     bX1 = bX1 + (int)(Math.random()*9)-4; 
+     bY1 = bY1 + (int)(Math.random()*9)-4;
+     bX2 = bX2 + (int)(Math.random()*9)-4; 
+     bY2 = bY2 + (int)(Math.random()*9)-4;
+     
+ }
    void show()
    {
      noStroke();
-     fill(bColor);
-     rect(bX,bY,20,20);
+     fill(b1Color);
+     rect(bX1,bY1,10,10);
+     fill(b2Color);
+     rect(bX2,bY2,10,10);
    }
  	//lots of java!   
  }    
